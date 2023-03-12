@@ -35,6 +35,10 @@ schema := RequestSchema{
     HttpResponseBody: true,
 }
 
+options := Options{
+    schema: schema
+}
+
 // Scrape a website
 response := e.Extract(options)
 
