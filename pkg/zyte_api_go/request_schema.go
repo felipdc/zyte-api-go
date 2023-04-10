@@ -5,6 +5,20 @@ type ScreenshotOptions struct {
 	FullPage bool   `json:"fullPage,omitempty"`
 }
 
+type Selector struct {
+	Type  string `json:"type" validate:"required,eq=css|xpath"`
+	Value string `json:"value" validate:"required"`
+}
+
+type Action struct {
+	Action      string   `json:"action" validate:"required"`
+	Selector    Selector `json:"selector,omitempty"`
+	Text        string   `json:"text,omitempty"`
+	ElapsedTime int      `json:"elapsedTime,omitempty"`
+	Status      string   `json:"status,omitempty"`
+	Error       string   `json:"error,omitempty"`
+}
+
 type RequestSchema struct {
 	Url                 string             `json:"url" validate:"required"`
 	HttpResponseBody    bool               `json:"httpResponseBody,omitempty" validate:"required_without_all=HttpRequestText HttpResponseHeaders Screenshot BrowserHtml"`
@@ -18,4 +32,5 @@ type RequestSchema struct {
 	Javascript          bool               `json:"javascript,omitempty"`
 	JobId               string             `json:"jobId,omitempty"`
 	ScreenshotOptions   *ScreenshotOptions `json:"screenshotOptions,omitempty"`
+	Actions             []Action           `json:"actions,omitempty" validate:"omitempty"`
 }
