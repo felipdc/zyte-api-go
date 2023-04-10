@@ -12,31 +12,31 @@ This is a Go wrapper for the Zyte API. Zyte API is a web scraping API that allow
 To install the wrapper, run the following command:
 
 ```bash
-go get github.com/felipdc/zyte-api-go
+go get github.com/felipdc/zyte-api-go/pkg/zyte_api_go
 ```
 ### Usage
 To use the wrapper, you first need to create a client:
 
 ```go
 import (
-    "github.com/felipdc/zyte-api-go"
+    "github.com/felipdc/zyte-api-go/pkg/zyte_api_go"
 )
 
 func main() {
-    e := NewExtractor("YOUR_API_KEY")
+    e := zyte_api_go.NewExtractor("YOUR_API_KEY")
 }
 ```
 You can then use the client to make API requests:
 
 ```go
 // Set options
-schema := RequestSchema{
+schema := zyte_api_go.RequestSchema{
     Url:              "http://books.toscrape.com/",
     HttpResponseBody: true,
 }
 
-options := Options{
-    schema: schema
+options := zyte_api_go.Options{
+    Schema: schema,
 }
 
 // Scrape a website
