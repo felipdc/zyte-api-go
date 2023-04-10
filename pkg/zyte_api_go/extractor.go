@@ -1,6 +1,7 @@
 package zyte_api_go
 
 import (
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -58,6 +59,20 @@ func (e Extractor) Extract(options Options) ResponseSchema {
 	err = json.Unmarshal(encBody, &resBody)
 	if err != nil {
 		log.Fatal(err)
+	}
+
+	if options.Schema.Screenshot {
+		if options.ScreenshotFile != "" {
+			// decode base64-encoded screenshot and write to file
+			screenshotBytes, err := base64.StdEncoding.DecodeString(resBody.Screenshot)
+			if err != nil {
+				log.Fatal(err)
+			}
+			err = ioutil.WriteFile(options.ScreenshotFile, screenshotBytes, 0644)
+			if err != nil {
+				log.Fatal(err)
+			}
+		}
 	}
 
 	return resBody
