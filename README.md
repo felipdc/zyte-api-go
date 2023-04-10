@@ -63,7 +63,7 @@ Below is a table describing which parameter is currently supported.
 | screenshotOptions        | ✅    |
 | geolocation              | ✅    |
 | javascript               | ✅    |
-| actions                  | ❌    |
+| actions                  | ✅    |
 | jobId                    | ✅    |
 | echoData                 | ❌    |
 | experimental             | ❌    |
